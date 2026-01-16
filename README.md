@@ -61,5 +61,34 @@ Integrated directly with the ML engine, the system provides proactive business i
 - [ ] **Sentiment Analysis**: Analyzing customer reviews to adjust demand forecasts.
 - [ ] **Automated Procurement**: Integrating with supplier APIs for one-click reordering.
 
+
 ---
+
+## 🐳 Running with Docker (Recommended)
+The easiest way to get the project up and running is using Docker. This avoids manual dependency installation and environment setup.
+
+### Prerequisites
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/) installed and running.
+
+### Installation & Launch
+1. **Clone the repository:**
+   ```bash
+   git clone <repository-url>
+   cd AI-BOS
+   ```
+
+2. **Setup Environment Variables:**
+   - Create a `.env` file in the `backend/` directory and add your `GEMINI_API_KEY`.
+
+3. **Build and Start:**
+   ```bash
+   docker-compose up --build
+   ```
+
+The application will be available at:
+- **Frontend**: `http://localhost:5173`
+- **Backend API**: `http://localhost:8000`
+
+---
+
 **Developed with focus on Scalability, Accuracy, and User Experience.**
