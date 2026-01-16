@@ -2,6 +2,7 @@
 .env
 .env.*
 !.env.example
+report.md
 
 # Dependency directories
 node_modules/
