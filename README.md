@@ -1,93 +1,118 @@
-# AI-Driven E-Commerce & Inventory Management System
+# AI-Driven E-Commerce & Inventory Management System (AI-BOS)
 
-## 🚀 Project Overview
-This project is a high-performance, AI-integrated e-commerce platform designed for modern retailers. It combines a seamless shopping experience with a powerful, data-driven Administrative Panel that leverages machine learning to automate business intelligence. 
+[![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi)](https://fastapi.tiangolo.com/)
+[![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
+[![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/)
+[![SQLite](https://img.shields.io/badge/sqlite-%2307405e.svg?style=for-the-badge&logo=sqlite&logoColor=white)](https://www.sqlite.org/)
+[![Scikit-Learn](https://img.shields.io/badge/scikit--learn-%23F7931E.svg?style=for-the-badge&logo=scikit-learn&logoColor=white)](https://scikit-learn.org/)
 
-The core of this project lies in its two primary AI implementations: **Conversational Customer Support** and **Predictive Inventory Forecasting**.
-
----
-
-## 🤖 Feature 1: Intelligent AI Chatbot
-The platform features a 24/7 conversational assistant designed to enhance user engagement and provide instant support.
-
-### Technical Implementation:
-- **Core Engine**: Powered by **Google Gemini Pro API**.
-- **Context Awareness**: Capable of multi-turn conversations with history persistence.
-- **Functionality**:
-    - Real-time response generation.
-    - Conversation history management (delete/clear).
-    - Seamless integration into the Shop UI via a persistent widget.
+An enterprise-grade, high-performance E-Commerce platform integrated with advanced AI capabilities for real-time customer support and predictive inventory analytics.
 
 ---
 
-## 📊 Feature 2: Machine Learning Demand Forecasting
-The Admin Panel includes a state-of-the-art forecasting suite that helps business owners predict future demand and minimize inventory stockouts.
+## 🏗️ System Architecture
 
-### Technical Implementation:
-- **Hybrid ML Approach**: The system utilizes a dual-model architecture from the `scikit-learn` library:
-    1. **Linear Regression**: Ideal for identifying consistent growth trends and seasonality.
-    2. **Random Forest Regressor**: A robust ensemble method capable of capturing complex, non-linear patterns in sales data.
-- **Automated Model Selection**: For every product, the system automatically trains both models and selects the "Champion" based on the lowest **RMSE (Root Mean Squared Error)** and **MAE (Mean Absolute Error)**.
-- **Advanced Feature Engineering**:
-    - **Temporal Features**: Day of week, Month, Weekend indicators, and Trend lines.
-    - **Lag Analysis**: 7, 14, and 30-day historical sales lags to capture momentum.
-    - **Rolling Statistics**: 7-day and 14-day moving averages and standard deviation to measure volatility.
-- **Growth Realism Filter**: To ensure business-grade reliability, we implemented a **1.8x Growth Cap** on historical peak sales, preventing unrealistic spikes and stabilized projections.
+```mermaid
+graph TD
+    User((User/Admin))
+    Vite[React + Vite Frontend]
+    FastAPI[FastAPI Backend]
+    SQLite[(SQLite Database)]
+    Gemini[Google Gemini AI]
+    ML[Scikit-Learn ML Models]
 
----
-
-## 🚨 Automated Stock Alert System
-Integrated directly with the ML engine, the system provides proactive business intelligence:
-- **Days Until Stockout**: Dynamically calculates how long current inventory will last based on forecasted daily demand.
-- **Smart Recommendations**: Suggests exact reorder quantities to meet predicted demand for the next 30 days.
-- **Tiered Alerts**:
-    - 🔴 **Critical**: Less than 7 days of stock remaining.
-    - 🟡 **Warning**: Less than 14 days of stock remaining.
-    - 🔵 **Info**: Approaching reorder threshold (<30 days).
+    User <--> Vite
+    Vite <--> FastAPI
+    FastAPI <--> SQLite
+    FastAPI <--> Gemini
+    FastAPI <--> ML
+```
 
 ---
 
-## 🛠️ Tech Stack
-- **Frontend**: React.js (Vite), Lucide Icons, Glassmorphism UI, Framer Motion animations.
-- **Backend**: FastAPI (Python), SQLAlchemy ORM, SQLite/PostgreSQL.
-- **Machine Learning**: Pandas, NumPy, Scikit-learn.
-- **AI Integration**: Google Generative AI (Gemini).
+## 🚀 Key Features
+
+### 🤖 1. Intelligent AI Chatbot
+A 24/7 conversational assistant designed to enhance user engagement.
+*   **Engine**: Google Gemini Pro API integration.
+*   **Memory**: Multi-turn conversation history persistence.
+*   **Management**: End-user ability to delete or clear chat history.
+*   **UI/UX**: Smooth glassmorphism widget with real-time streaming-like feedback.
+
+### 📊 2. Machine Learning Demand Forecasting
+A state-of-the-art forecasting suite for data-driven inventory management.
+*   **Dual-Model Architecture**: Simultaneous training of **Linear Regression** and **Random Forest Regressor**.
+*   **Champion Selection**: Automated model selection based on lowest **RMSE** and **MAE**.
+*   **Feature Engineering**: 7/14/30-day lag analysis, rolling temporal statistics, and growth realistic filters.
+
+### 🚨 3. Smart Inventory Orchestration
+*   **Stockout Prediction**: Dynamic calculation of "Days Until Stockout" based on ML trends.
+*   **Automated Reordering**: AI-suggested quantities to meet the next 30 days of demand.
+*   **Tiered Visual Alerts**: Critical (red), Warning (yellow), and Info (blue) status tracking.
 
 ---
 
-## 🛤️ Future Roadmap
-- [ ] **Prophet Integration**: Adding Meta's Prophet model for multi-year seasonality.
-- [ ] **Image Recognition**: AI-based product tagging and categorical sorting.
-- [ ] **Sentiment Analysis**: Analyzing customer reviews to adjust demand forecasts.
-- [ ] **Automated Procurement**: Integrating with supplier APIs for one-click reordering.
+## 🐳 Quick Start (Docker)
 
+The easiest way to run the entire suite locally:
 
----
-
-## 🐳 Running with Docker (Recommended)
-The easiest way to get the project up and running is using Docker. This avoids manual dependency installation and environment setup.
-
-### Prerequisites
-- [Docker Desktop](https://www.docker.com/products/docker-desktop/) installed and running.
-
-### Installation & Launch
-1. **Clone the repository:**
+1. **Clone & Navigate**:
    ```bash
-   git clone <repository-url>
-   cd AI-BOS
+   git clone https://github.com/HaseebAhmad24-collab/AI-Driven-Ecommerce-Suite.git
+   cd AI-Driven-Ecommerce-Suite
    ```
 
-2. **Setup Environment Variables:**
-   - Create a `.env` file in the `backend/` directory and add your `GEMINI_API_KEY`.
+2. **Secrets Configuration**:
+   Create `backend/.env`:
+   ```env
+   GEMINI_API_KEY=your_key_here
+   ```
 
-3. **Build and Start:**
+3. **Launch**:
    ```bash
    docker-compose up --build
    ```
+   *   Frontend: `http://localhost:5173`
+   *   API Docs: `http://localhost:8000/docs`
 
-The application will be available at:
-- **Frontend**: `http://localhost:5173`
-- **Backend API**: `http://localhost:8000`
+---
+
+## 🛠️ Project Structure
+
+```text
+AI-BOS/
+├── backend/              # FastAPI Server & ML Models
+│   ├── main.py           # API Entry Point
+│   ├── forecasting.py    # ML Logic (LR & Random Forest)
+│   ├── chatbot.py        # Gemini AI Orchestration
+│   └── models.py         # SQLAlchemy Models
+├── frontend/             # React (Vite) Application
+│   ├── src/              # Source Code
+│   ├── public/           # Static Assets
+│   └── index.html
+├── docker-compose.yml    # Root Orchestration
+└── .gitignore            # Clean Repo Configuration
+```
+
+---
+
+## 👨‍💻 Manual Development Setup
+
+### Backend
+```bash
+cd backend
+python -m venv venv
+source venv/bin/scripts/activate  # On Windows: .\venv\Scripts\activate
+pip install -r requirements.txt
+uvicorn main:app --reload
+```
+
+### Frontend
+```bash
+cd frontend
+npm install
+npm run dev
+```
 
 ---
 
